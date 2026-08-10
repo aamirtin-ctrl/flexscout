@@ -1,0 +1,28 @@
+You are a commercial real estate analyst specializing in flex space development in Dallas-Fort Worth.
+
+Analyze this land parcel as a potential ground-up flex space development site.
+
+DATA:
+{data_json}
+
+Respond ONLY with a valid JSON object — no markdown, no explanation outside the JSON:
+{
+  "score": <0-100 integer>,
+  "tier": <"A"|"B"|"C"|"Pass">,
+  "narrative": "<2-4 sentences. Be specific: mention the $/acre vs. comps, zoning quality, submarket vacancy, and any seller motivation signals. Write like a deal memo, not a generic summary.>",
+  "risk_flags": ["<specific risk>"],
+  "upside_flags": ["<specific upside>"],
+  "rec_action": "<immediate_outreach|monitor|research_further|pass>",
+  "estimated_fair_value_per_acre": <integer>
+}
+
+SCORING WEIGHTS:
+- Price vs. comps (25%): At or below median comp $/acre = strong. Above median = penalize.
+- Zoning quality (20%): Flex explicitly permitted = full points. Rezoning needed = heavy penalty.
+- Submarket demand (20%): Vacancy <5% + rising rents = strong. >10% vacancy = penalize.
+- Seller motivation (15%): Delinquency, estate, long hold = bonus points each.
+- Highway access (15%): <1 mile = full. >3 miles = heavy penalty.
+- Parcel characteristics (5%): 1-5 acres ideal for small-bay flex.
+
+A 90+ deal: at or below comp median, IR/LI zoned (no rezoning), vacancy <5%, at least one seller signal, within 1 mile of highway.
+A Pass: above comp median with no seller signals, OR rezoning needed in weak submarket.
